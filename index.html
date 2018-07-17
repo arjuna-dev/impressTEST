@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+        <div id="impress">
+                <div class="step box" data-x="0" data-y="0"> 
+                        <button id="a-button" onclick="goTo();">clickes moi</button>
+                        <p id="first-p">This is my first slide!!</p> 
+                </div> 
+                
+                <div class="step box" data-x="0" data-y="1000" data-z="1000"> 
+                        <p>This is my second slide!!</p> 
+                </div> 
+                <div class="step box" data-x="0" data-y="2000" data-z="1010" data-rotate='90' data-scale='2'> 
+                        <p>This is my third slide!!</p> 
+                </div> 
+                <div class="step box" data-x="0" data-y="2000" data-z="1010" data-rotate-y='90'> 
+                        <p>This is my 4th slide, after a y90 rotation.</p> 
+                </div> 
+                <div class="step box" data-x="0" data-y="2000" data-z="1010" data-rotate-x='90'> 
+                        <p>This is my 5th slide, after an x90 rotation.</p> 
+                </div> 
+                <div class="step box" data-x="0" data-y="2000" data-z="1010" data-rotate-z='90'> 
+                        <p>This is my 6th slide, after a z90 rotation.</p> 
+                </div> 
+        </div>
+        
+        <script>
+window.onload = function (){
+        document.documentElement.scrollTop = 41;
+        document.addEventListener('scroll', goTo2)
+
+// left: 37, up: 38, right: 39, down: 40,
+// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+// var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+// function preventDefault(e) {
+// e = e || window.event;
+// if (e.preventDefault)
+// e.preventDefault();
+// e.returnValue = false;  
+// }
+// function preventDefaultForScrollKeys(e) {
+// if (keys[e.keyCode]) {
+// preventDefault(e);
+// return false;
+// }
+// }
+// function disableScroll() {
+//         if (window.addEventListener) // older FF
+//                 window.addEventListener('DOMMouseScroll', preventDefault, false);
+//         window.onwheel = preventDefault; // modern standard
+//         window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+//         window.ontouchmove = preventDefault; // mobile
+//         document.onkeydown = preventDefaultForScrollKeys;
+// }
+// function enableScroll() {
+//         if (window.removeEventListener)
+//                 window.removeEventListener('DOMMouseScroll', preventDefault, false);
+//         window.onmousewheel = document.onmousewheel = null;
+//         window.onwheel = null;
+//         window.ontouchmove = null;
+//         document.onkeydown = null;
+// }
+
+
+        var oldScroll = document.documentElement.scrollTop
+        function nextPage(){
+                var currentURL = window.location.href
+                var currentURLArray = currentURL.split("")
+                var lastIndex = currentURLArray.length-1
+                var currentValue = currentURLArray[lastIndex]
+                var nextValue = Number(currentValue)+1
+                currentURLArray[lastIndex] = nextValue
+                var finalURL = currentURLArray.join("")
+                window.location.href = finalURL
+        }
+        function prevPage(){
+                var currentURL = window.location.href
+                var currentURLArray = currentURL.split("")
+                var lastIndex = currentURLArray.length-1
+                var currentValue = currentURLArray[lastIndex]
+                var nextValue = Number(currentValue)-1
+                currentURLArray[lastIndex] = nextValue
+                var finalURL = currentURLArray.join("")
+                window.location.href = finalURL
+        }
+
+
+        var x = 0
+        function goTo2() {
+                x+=1
+                console.log(x)
+                // if (executed==true){
+                if (x>40){
+                nextPage()
+                document.documentElement.scrollTop = 41;
+                x=0
+                }
+                //         executed = false
+                // }
+                // console.log('1')
+                // if (document.documentElement.scrollTop > 15) {
+                        
+                //         console.log('2')
+                //         nextPage() 
+                //         document.documentElement.scrollTop = 10;      
+
+                      
+                // } else if (document.documentElement.scrollTop < 5) {
+                //         console.log('3')
+                //         prevPage()
+                //         document.documentElement.scrollTop = 10;   
+                // }
+
+                // oldScroll = document.documentElement.scrollTop
+
+        }
+
+        // function goTo(){
+        //         var currentURL = window.location.href
+        //         var currentURLArray = currentURL.split("")
+        //         var lastIndex = currentURLArray.length-1
+        //         var currentValue = currentURLArray[lastIndex]
+        //         var nextValue = Number(currentValue)+1
+        //         currentURLArray[lastIndex] = nextValue
+        //         var finalURL = currentURLArray.join("")
+        //         window.location.href = finalURL
+        // }
+}
+    </script>
+    <script src="impress.js"></script>
+    <script>
+        impress().init();
+    </script>
+</body>
+</html>
