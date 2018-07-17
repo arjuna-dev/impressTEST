@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html id="the-html" lang="en">
 <head>
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
@@ -9,9 +9,9 @@
 </head>
 
 <body>
-        <div id="main">
+        <!-- <div id="main">
                 <div id="sub-main"></div>
-        </div>
+        </div> -->
         <div id="impress">
                 <div class="step box" data-x="0" data-y="0"> 
                         <button id="a-button" onclick="goTo();">clickes moi</button>
@@ -35,12 +35,21 @@
                 </div> 
         </div>
         
-        <script>
+<script>
 window.onload = function (){
-        document.documentElement.scrollTop = 41;
-        document.addEventListener('scroll', goTo)
 
-        var oldScroll = document.documentElement.scrollTop
+var ht = document.getElementById('the-html')
+// ht.addEventListener("wheel", goTo);
+ht.addEventListener("wheel", function(event){
+        var delta = event.wheelDelta
+
+        if (delta < 0) {
+                goToNext();
+        } else if (delta > 0) {
+                goToPrev();
+        }
+});
+
         function nextPage(){
                 var currentURL = window.location.href                
                 var currentURLArray = currentURL.split("")
@@ -53,10 +62,16 @@ window.onload = function (){
                                 break
                         }
                 }
-                console.log(reverseId)
                 var id = reverseId.reverse().join("")
-                console.log(id)
-                var nextId = document.getElementById(`${id}`).nextSibling.nextSibling.id
+                var nextId = ""
+
+                if (document.getElementById(`${id}`).parentElement.lastElementChild == document.getElementById(`${id}`)){
+                        nextId = document.getElementById(`${id}`).parentElement.firstElementChild.id
+                } else {
+                        nextId = document.getElementById(`${id}`).nextSibling.nextSibling.id
+                }
+                
+
                 window.location.href = `#/${nextId}`
         }
         function prevPage(){
@@ -71,25 +86,37 @@ window.onload = function (){
                                 break
                         }
                 }
-                console.log(reverseId)
                 var id = reverseId.reverse().join("")
-                console.log(id)
-                var nextId = document.getElementById(`${id}`).previousSibling.previousSibling.id
+                var nextId = ""
+                if (document.getElementById(`${id}`).parentElement.firstElementChild == document.getElementById(`${id}`)){
+                        nextId = document.getElementById(`${id}`).id
+                } else {
+                        nextId = document.getElementById(`${id}`).previousSibling.previousSibling.id
+                }
+                
+                window.location.href = `#/${nextId}`
         }
 
         var x = 0
-        function goTo() {
+        function goToNext() {
                 x+=1
                 console.log(x)
-                // if (executed==true){
                 if (x>40){
                 nextPage()
-                document.documentElement.scrollTop = 41;
                 x=0
                 }
         }
+        var x2 = 0
+        function goToPrev() {
+                x2+=1
+                console.log(x2)
+                if (x2>40){
+                prevPage()
+                x2=0
+                }
+        }
 }
-    </script>
+</script>
 
     <script src="impress.js"></script>
     <script>
