@@ -19,12 +19,12 @@ p{
     transform: translateY(-50%);
 }
 
-/* html{
+html{
     height: 100vh;
     width: 500vw;
     background: darkcyan;
     overflow: scroll;
-} */
+}
 
 #main{
     height: 110vh;
