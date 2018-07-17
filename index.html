@@ -9,6 +9,9 @@
 </head>
 
 <body>
+        <div id="main">
+                <div id="sub-main"></div>
+        </div>
         <div id="impress">
                 <div class="step box" data-x="0" data-y="0"> 
                         <button id="a-button" onclick="goTo();">clickes moi</button>
@@ -36,40 +39,6 @@
 window.onload = function (){
         document.documentElement.scrollTop = 41;
         document.addEventListener('scroll', goTo2)
-
-// left: 37, up: 38, right: 39, down: 40,
-// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
-// var keys = {37: 1, 38: 1, 39: 1, 40: 1};
-
-// function preventDefault(e) {
-// e = e || window.event;
-// if (e.preventDefault)
-// e.preventDefault();
-// e.returnValue = false;  
-// }
-// function preventDefaultForScrollKeys(e) {
-// if (keys[e.keyCode]) {
-// preventDefault(e);
-// return false;
-// }
-// }
-// function disableScroll() {
-//         if (window.addEventListener) // older FF
-//                 window.addEventListener('DOMMouseScroll', preventDefault, false);
-//         window.onwheel = preventDefault; // modern standard
-//         window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
-//         window.ontouchmove = preventDefault; // mobile
-//         document.onkeydown = preventDefaultForScrollKeys;
-// }
-// function enableScroll() {
-//         if (window.removeEventListener)
-//                 window.removeEventListener('DOMMouseScroll', preventDefault, false);
-//         window.onmousewheel = document.onmousewheel = null;
-//         window.onwheel = null;
-//         window.ontouchmove = null;
-//         document.onkeydown = null;
-// }
-
 
         var oldScroll = document.documentElement.scrollTop
         function nextPage(){
@@ -104,38 +73,11 @@ window.onload = function (){
                 document.documentElement.scrollTop = 41;
                 x=0
                 }
-                //         executed = false
-                // }
-                // console.log('1')
-                // if (document.documentElement.scrollTop > 15) {
-                        
-                //         console.log('2')
-                //         nextPage() 
-                //         document.documentElement.scrollTop = 10;      
-
-                      
-                // } else if (document.documentElement.scrollTop < 5) {
-                //         console.log('3')
-                //         prevPage()
-                //         document.documentElement.scrollTop = 10;   
-                // }
-
-                // oldScroll = document.documentElement.scrollTop
 
         }
-
-        // function goTo(){
-        //         var currentURL = window.location.href
-        //         var currentURLArray = currentURL.split("")
-        //         var lastIndex = currentURLArray.length-1
-        //         var currentValue = currentURLArray[lastIndex]
-        //         var nextValue = Number(currentValue)+1
-        //         currentURLArray[lastIndex] = nextValue
-        //         var finalURL = currentURLArray.join("")
-        //         window.location.href = finalURL
-        // }
 }
     </script>
+
     <script src="impress.js"></script>
     <script>
         impress().init();

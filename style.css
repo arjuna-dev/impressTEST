@@ -19,9 +19,23 @@ p{
     transform: translateY(-50%);
 }
 
-html{
+/* html{
     height: 100vh;
     width: 500vw;
     background: darkcyan;
     overflow: scroll;
+} */
+
+#main{
+    height: 110vh;
+    width: 300vh;
+    background: deeppink;
+    overflow: scroll;
+}
+
+#sub-main{
+    height: 100px;
+    width: 100px;
+    background: rgb(20, 255, 255);
+    margin-top: 100%;
 }
