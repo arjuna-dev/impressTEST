@@ -38,7 +38,7 @@
         <script>
 window.onload = function (){
         document.documentElement.scrollTop = 41;
-        document.addEventListener('scroll', goTo2)
+        document.addEventListener('scroll', goTo)
 
         var oldScroll = document.documentElement.scrollTop
         function nextPage(){
@@ -60,18 +60,25 @@ window.onload = function (){
                 window.location.href = `#/${nextId}`
         }
         function prevPage(){
-                var currentURL = window.location.href
+                var currentURL = window.location.href                
                 var currentURLArray = currentURL.split("")
-                var lastIndex = currentURLArray.length-1
-                var currentValue = currentURLArray[lastIndex]
-                var nextValue = Number(currentValue)-1
-                currentURLArray[lastIndex] = nextValue
-                var finalURL = currentURLArray.join("")
-                window.location.href = finalURL
+                var reverseURL = currentURLArray.reverse()
+                var reverseId = []
+                for (i of reverseURL){
+                        if(i != '/'){
+                                reverseId.push(i)
+                        } else if (i == '/'){
+                                break
+                        }
+                }
+                console.log(reverseId)
+                var id = reverseId.reverse().join("")
+                console.log(id)
+                var nextId = document.getElementById(`${id}`).previousSibling.previousSibling.id
         }
 
         var x = 0
-        function goTo2() {
+        function goTo() {
                 x+=1
                 console.log(x)
                 // if (executed==true){
