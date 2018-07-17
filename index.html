@@ -38,6 +38,37 @@
 <script>
 window.onload = function (){
 
+var threshold = 40
+function myFunction() { 
+if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) {
+        threshold = 40
+}
+else if(navigator.userAgent.indexOf("Chrome") != -1 )
+{
+        threshold = 40
+}
+else if(navigator.userAgent.indexOf("Safari") != -1)
+{
+        threshold = 80
+}
+else if(navigator.userAgent.indexOf("Firefox") != -1 ) 
+{
+        threshold = 35 
+}
+else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) //IF IE > 10
+{
+        threshold = 40
+}  
+else 
+{
+        threshold = 40
+}
+}
+
+setTimeout(() => {
+       myFunction() 
+}, 10);
+
 var ht = document.getElementById('the-html')
 // ht.addEventListener("wheel", goTo);
 ht.addEventListener("wheel", function(event){
@@ -46,6 +77,17 @@ ht.addEventListener("wheel", function(event){
         if (delta < 0) {
                 goToNext();
         } else if (delta > 0) {
+                goToPrev();
+        }
+});
+
+
+ht.addEventListener("DOMMouseScroll", function(event){
+        var delta = event.detail
+
+        if (delta > 0) {
+                goToNext();
+        } else if (delta < 0) {
                 goToPrev();
         }
 });
@@ -101,7 +143,7 @@ ht.addEventListener("wheel", function(event){
         function goToNext() {
                 x+=1
                 console.log(x)
-                if (x>40){
+                if (x>threshold){
                 nextPage()
                 x=0
                 }
@@ -110,7 +152,7 @@ ht.addEventListener("wheel", function(event){
         function goToPrev() {
                 x2+=1
                 console.log(x2)
-                if (x2>40){
+                if (x2>threshold){
                 prevPage()
                 x2=0
                 }
